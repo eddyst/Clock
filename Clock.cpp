@@ -23,6 +23,7 @@
 
 #include "clock.h"
 
+
 Clock::Clock() : 
   mc_nLocalUDPPort(8880), 
   mc_ulRefreshInterval(5UL * 60UL * 60UL * 1000UL), // normally every 5 hours
@@ -202,7 +203,7 @@ void Clock::RefreshNTPTime()
 void Clock::SendNTPPacket(EthernetUDP &rUDP, const IPAddress &rAddress)
 {
   const int cnNTPPacketSize = 48;
-  static byte abyPacketBuffer[cnNTPPacketSize] PROGMEM = 
+  const static byte abyPacketBuffer[cnNTPPacketSize] PROGMEM = 
     {   0b11100011,   // LI, Version, Mode
         0,     // Stratum, or type of clock
         6,     // Polling Interval
